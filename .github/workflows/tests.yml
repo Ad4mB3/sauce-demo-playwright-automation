@@ -1,0 +1,31 @@
+name: Playwright Automated Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Zkopírování kódu repozitáře
+      uses: actions/checkout@v4
+
+    - name: Instalace Pythonu 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalace závislostí z requirements.txt
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Instalace Playwright prohlížečů
+      run: playwright install --with-deps
+
+    - name: Spuštění testů přes Pytest
+      run: pytest
