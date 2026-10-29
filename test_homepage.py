@@ -11,7 +11,10 @@ def test_adding_into_cart(page: Page):
     test_page.fulllogin()
     test_homepage = Homepage(page)
 
-    test_homepage.add_to_cart("sauce-labs-backpack")
+    product = "sauce-labs-backpack"
+    test_homepage.add_to_cart(product)
+    expect(test_homepage.removebutton(product)).to_be_visible()
+
   
 def test_sucesful_logout(page: Page):
     """
@@ -44,7 +47,7 @@ def test_all_items(page: Page):
     all_items = Loginpage(page)
     all_items.fulllogin()
     all_itemshm = Homepage(page)
-    all_itemshm.all_items("sauce-labs-backpack")
+    all_itemshm.all_items() 
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
 

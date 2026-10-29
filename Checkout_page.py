@@ -4,7 +4,7 @@ class Checkout:
     def __init__(self, page: Page):
         self.page = page 
         self.checkoutbtn = page.locator("#shopping_cart_container > a")
-        self.addeditembtn = page.locator("#cart_contents_container > div > div.cart_list > div.cart_item")
+        self.addeditembtn = page.locator(".cart_item")
 
 
     def checkoutpage(self):

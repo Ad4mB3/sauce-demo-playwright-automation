@@ -8,6 +8,7 @@ class Homepage:
         self.menubbtn = page.locator("#react-burger-menu-btn")
         self.aboutbtn = page.locator("#about_sidebar_link")
         self.allitemsbtn = page.locator("#inventory_sidebar_link")
+        
 
     def logout(self):
         self.menubbtn.click()
@@ -15,14 +16,17 @@ class Homepage:
         
 
     def add_to_cart(self, productname):
-        self.page.locator(f"#add-to-cart-{productname}").click()
+        self.page.locator(f"[data-test='add-to-cart-{productname}']").click()
 
     def about_info(self):
         self.menubbtn.click()
         self.aboutbtn.click()
 
-    def all_items(self, productname):
-        self.page.locator(f"#add-to-cart-{productname}").click()
+    def all_items(self):
+        self.page.get_by_text("Sauce Labs Backpack").click()
         self.menubbtn.click()
         self.allitemsbtn.click()
+
+    def removebutton(self, productname):
+        return self.page.locator(f"[data-test='remove-{productname}']")
         
